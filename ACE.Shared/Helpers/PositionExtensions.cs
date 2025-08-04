@@ -104,10 +104,9 @@ public static class PositionExtensions
     /// </summary>
     public static Vector3 GetDirection(this Vector3 self, Vector3 target)
     {
-        var target2D = new Vector3(self.X, self.Y, 0);
-        var self2D = new Vector3(target.X, target.Y, 0);
+        var difference = new Vector3(target.X - self.X, target.Y - self.Y, 0);
 
-        return Vector3.Normalize(target - self);
+        return Vector3.Normalize(difference);
     }
 
     /// <summary>
