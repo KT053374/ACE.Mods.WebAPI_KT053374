@@ -73,7 +73,7 @@ public static class Augment
             _ => false,
         };
 
-        return true;
+        return success;
     }
 
 
