@@ -1,5 +1,5 @@
 ﻿namespace ACE.Shared.Mods;
-public abstract class SettingsContainer<T> where T : class?, new()
+public abstract class SettingsContainer<T> : IDisposable where T : class?, new()
 {
     const int RETRIES = 10;
 
@@ -101,6 +101,14 @@ public abstract class SettingsContainer<T> where T : class?, new()
         // Should never reach here
         Settings = null;
         return false;
+    }
+
+    /// Releases resources used by the container.
+    /// Derived classes overriding this method must call <c>base.Dispose()</c>.
+        public virtual void Dispose()
+    {
+        _fileWatcher.Changed -= OnSettingsChanged;
+        _fileWatcher.Dispose();
     }
 
     protected abstract Task<T> LoadSettingsAsync();
