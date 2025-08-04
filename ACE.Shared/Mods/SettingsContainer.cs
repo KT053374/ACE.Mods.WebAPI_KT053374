@@ -74,7 +74,7 @@ public abstract class SettingsContainer<T> : IDisposable where T : class?, new()
                     if (!success)
                         Settings = null;
 
-                    return Settings is null;
+                    return Settings is not null;
 
                 }
             }
